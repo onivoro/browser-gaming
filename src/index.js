@@ -21,7 +21,7 @@ const canvas = document.getElementById('canvas');
 
 const ctx = canvas.getContext('2d');
 
-const run = new Animation('run', 0, 42);
+const run = new Animation('rj', 0, 36);
 let i = 0;
 (function animate(time) {
     if (i > run.frameCount) i = 0;
