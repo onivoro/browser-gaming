@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 800;
 const CANVAS_HEIGHT = canvas.height = 700;
 const pathToBackgrounds = 'assets/racing-background/PNG/Layers/'
-let gameSpeed = 5;
+let gameSpeed = 12;
 
 const backgroundLayer1 = new Image();
 backgroundLayer1.src = pathToBackgrounds + 'layer-1.png';
@@ -19,13 +19,21 @@ backgroundLayer4.src = pathToBackgrounds + 'layer-4.png';
 
 const imageWidth = 2560;
 let x = 0;
+let x2 =imageWidth;
+
+const img = backgroundLayer3;
 
 function animate(time) {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    ctx.drawImage(backgroundLayer3, x, 0);
-    if (x < -imageWidth) {x = 0;}
+    ctx.drawImage(img, x, 0);
+    ctx.drawImage(img, x2, 0);
+    if (x < -imageWidth) {x = imageWidth - gameSpeed;}
     else { 
         x -= gameSpeed;    
+    }
+    if (x2 < -imageWidth) {x2 = imageWidth - gameSpeed}
+    else { 
+        x2 -= gameSpeed;    
     }
     requestAnimationFrame(animate);
 }
