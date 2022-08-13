@@ -1,33 +1,22 @@
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-const CANVAS_WIDTH = canvas.width = 800;
-const CANVAS_HEIGHT = canvas.height = 700;
-const pathToBackgrounds = 'assets/racing-background/PNG/Layers/'
-let gameSpeed = 10;
-
-const backgroundLayer1 = new Image();
-backgroundLayer1.src = pathToBackgrounds + 'layer-1.png';
-
-const backgroundLayer2 = new Image();
-backgroundLayer2.src = pathToBackgrounds + 'layer-2.png';
-
-const backgroundLayer3 = new Image();
-backgroundLayer3.src = pathToBackgrounds + 'layer-3.png';
-
-const backgroundLayer4 = new Image();
-backgroundLayer4.src = pathToBackgrounds + 'layer-4.png';
-
 const IMAGE_WIDTH = 2560;
 const IMAGE_HEIGHT = 1440;
+const PATH_TO_BACKGROUNDS = 'assets/racing-background/PNG/Layers/'
+
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const CANVAS_WIDTH = canvas.width = IMAGE_WIDTH * .5;
+const CANVAS_HEIGHT = canvas.height = IMAGE_HEIGHT * 2 / 3 - 40;
+let gameSpeed = 10;
 
 class Layer {
-    constructor(image, speedModifier) {
+    constructor(imagePath, speedModifier, imageWidth, imageHeight) {
         this.x = 0;
         this.y = 0;
-        this.width = IMAGE_WIDTH;
-        this.height = IMAGE_HEIGHT;
+        this.width = imageWidth;
+        this.height = imageHeight;
         this.x2 = this.width;
-        this.image = image;
+        this.image = new Image();
+        this.image.src = PATH_TO_BACKGROUNDS + imagePath;
         this.speedModifier = speedModifier;
         this.speed = gameSpeed * this.speedModifier;
 
@@ -51,13 +40,11 @@ class Layer {
     }
 }
 
-const layer1 = new Layer(backgroundLayer1, 0.2);
-const layer2 = new Layer(backgroundLayer2, 0.4);
-const layer3 = new Layer(backgroundLayer3, 0.6);
-const layer4 = new Layer(backgroundLayer4, 0.8);
-
 const layers = [
-    layer1, layer2, layer3, layer4
+    new Layer('layer-1.png', 0.2, IMAGE_WIDTH, IMAGE_HEIGHT),
+    new Layer('layer-2.png', 0.4, IMAGE_WIDTH, IMAGE_HEIGHT),
+    new Layer('layer-3.png', 0.6, IMAGE_WIDTH, IMAGE_HEIGHT),
+    new Layer('layer-4.png', 0.8, IMAGE_WIDTH, IMAGE_HEIGHT),
 ];
 
 function animate(time) {
