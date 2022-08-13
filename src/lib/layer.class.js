@@ -1,8 +1,7 @@
-const PATH_TO_BACKGROUNDS = 'assets/racing-background/PNG/Layers/';
+import { PATH_TO_BACKGROUNDS } from "./asset-paths.constant.js";
 
 export class Layer {
-    constructor(imagePath, speedModifier, imageWidth, imageHeight, gameSpeed, ctx) {
-        this.ctx = ctx;
+    constructor(imagePath, speedModifier, imageWidth, imageHeight, gameSpeed) {
         this.width = imageWidth;
         this.height = imageHeight;
         this.speedModifier = speedModifier;
@@ -16,7 +15,7 @@ export class Layer {
         this.image.src = PATH_TO_BACKGROUNDS + imagePath;
     }
 
-    update () {
+    #update () {
         this.speed = this.gameSpeed * this.speedModifier;
         if (this.x <= -this.width) {
             this.x = this.width + this.x2 - this.speed;
@@ -28,8 +27,9 @@ export class Layer {
         this.x2 = Math.floor(this.x2 - this.speed);
     }
 
-    draw () {
-        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-        this.ctx.drawImage(this.image, this.x2, this.y, this.width, this.height);
+    draw (ctx) {
+        this.#update();
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        ctx.drawImage(this.image, this.x2, this.y, this.width, this.height);
     }
 }
