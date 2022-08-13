@@ -1,5 +1,5 @@
 body {
-    /* background-color: hotpink; */
+    background: linear-gradient(to right, steelblue, coral, blue, hotpink, limegreen, purple);
 }
 
 #canvas {
@@ -11,4 +11,5 @@ body {
     top: 50%;
     left: 50%;
     border-radius: 8px;
+    box-shadow: 12px 12px 2px 1px rgba(0, 0, 0, .2);
 }
