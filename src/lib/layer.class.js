@@ -7,15 +7,16 @@ export class Layer {
         this.speedModifier = speedModifier;
         this.gameSpeed = gameSpeed;
         this.speed = gameSpeed * this.speedModifier;
-        
+
         this.x = 0;
         this.y = 0;
         this.x2 = this.width;
         this.image = new Image();
         this.image.src = PATH_TO_BACKGROUNDS + imagePath;
+        this.timeBetweenFrames = 20;
     }
 
-    #update () {
+    #update() {
         this.speed = this.gameSpeed * this.speedModifier;
         if (this.x <= -this.width) {
             this.x = this.width + this.x2 - this.speed;
@@ -27,9 +28,11 @@ export class Layer {
         this.x2 = Math.floor(this.x2 - this.speed);
     }
 
-    draw (ctx) {
+    draw(ctx, deltaTime) {
+
         this.#update();
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.x2, this.y, this.width, this.height);
+
     }
 }

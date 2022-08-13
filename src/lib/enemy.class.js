@@ -13,6 +13,8 @@ export class Enemy {
         this.canvasHeight = canvasHeight;
         this.canvasWidth = canvasWidth;
 
+        this.timeBetweenFrames = 2000;
+
         this.x = 0;
         this.y = Math.random() * this.canvasHeight;
         this.image = new Image();
@@ -26,8 +28,10 @@ export class Enemy {
         this.x = Math.floor(this.x + this.speed);
     }
 
-    draw(ctx) {
-        this.#update();
-        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    draw(ctx, deltaTime) {
+        
+            this.#update();
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        
     }
 }
