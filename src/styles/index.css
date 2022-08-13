@@ -1,4 +1,14 @@
+body {
+    /* background-color: hotpink; */
+}
+
 #canvas {
-    height: 100vh;
-    width: 100%;
+    position: absolute;
+    border: dashed 4px black;
+    width: 800px;
+    height: 700px;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 8px;
 }
