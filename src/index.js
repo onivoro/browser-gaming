@@ -3,6 +3,7 @@ import { Layer } from './lib/layer.class.js';
 const IMAGE_WIDTH = 2560;
 const IMAGE_HEIGHT = 1440;
 
+/** @type {HTMLCanvasElement} */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = IMAGE_WIDTH * .5;
