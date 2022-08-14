@@ -10,7 +10,7 @@ const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = IMAGE_WIDTH * .5;
 const CANVAS_HEIGHT = canvas.height = IMAGE_HEIGHT * 2 / 3 - 40;
 const GAME_SPEED = 10;
-let timeSinceLastDraw = 0;
+let timeLastDrawn = 0;
 const timeBetweenFrames = 20;
 const layers = [
     new Layer('layer-1.png', 0.2, IMAGE_WIDTH, IMAGE_HEIGHT, GAME_SPEED),
@@ -29,11 +29,10 @@ const enemies = [
 ];
 
 function animate(time) {
-    const deltaTime = !time ? timeBetweenFrames : time - timeSinceLastDraw;
-    // console.warn(new Date().toISOString(), time, deltaTime)
+    const deltaTime = !time ? timeBetweenFrames : time - timeLastDrawn;
+
     if (deltaTime >= timeBetweenFrames) {
-        // console.warn(new Date().toISOString(), time, deltaTime, 'drawing')
-        timeSinceLastDraw = time;
+        timeLastDrawn = time;
         ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
         layers.forEach(layer => {
             layer.draw(ctx, deltaTime);
@@ -41,9 +40,8 @@ function animate(time) {
         enemies.forEach(enemy => {
             enemy.draw(ctx, deltaTime);
         });
-    } else {
-        // console.warn(new Date().toISOString(), time, deltaTime, 'nope')
     }
+
     requestAnimationFrame(animate);
 }
 
