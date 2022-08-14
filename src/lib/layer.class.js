@@ -31,6 +31,7 @@ export class Layer {
     draw(ctx, deltaTime) {
 
         this.#update();
+
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         ctx.drawImage(this.image, this.x2, this.y, this.width, this.height);
 

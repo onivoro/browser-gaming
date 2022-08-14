@@ -7,7 +7,7 @@ const IMAGE_HEIGHT = 1440;
 /** @type {HTMLCanvasElement} */
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const CANVAS_WIDTH = canvas.width = IMAGE_WIDTH * .5;
+const CANVAS_WIDTH = canvas.width = IMAGE_WIDTH * .7;
 const CANVAS_HEIGHT = canvas.height = IMAGE_HEIGHT * 2 / 3 - 40;
 const GAME_SPEED = 10;
 let timeLastDrawn = 0;
@@ -24,8 +24,13 @@ function getFlappy() {
         GAME_SPEED, CANVAS_HEIGHT, CANVAS_WIDTH)
 }
 
+function getCar() {
+    return new Enemy('Free2dgameAsset_CarsSprites', (number) => `Car PNG/car${number.toString().padStart(2, '0')}.png`, 4, 2, 259, 146,
+        GAME_SPEED, CANVAS_HEIGHT, CANVAS_WIDTH)
+}
+
 const enemies = [
-    getFlappy(), getFlappy()
+    getFlappy(), getFlappy(), getFlappy(), getCar()
 ];
 
 function animate(time) {

@@ -15,6 +15,7 @@ export class Enemy {
 
         this.frameNumber = 0;
         this.timeBetweenFrames = 2000;
+        this.direction = 1;
 
         this.x = 0;
         this.y = Math.random() * this.canvasHeight;
@@ -26,14 +27,22 @@ export class Enemy {
         this.speed = this.gameSpeed * this.speedModifier;
         if (this.frameNumber >= this.imageCount) { this.frameNumber = 0; }
         this.image.src = `${PATH_TO_ENEMIES}${this.imageFolder}/${this.imageNameGenerator(this.frameNumber)}`;
-        this.x++;
         this.frameNumber++;
-        this.x = Math.floor(this.x + this.speed);
+        if (this.x > this.canvasWidth) {
+            this.direction = -1;
+        }
+
+        if (this.x <= 0) {
+            this.direction = 1;
+        }
+
+        this.x += this.direction;
+        this.x = Math.floor(this.x +  this.direction * this.speed);
     }
 
     draw(ctx, deltaTime) {
         
-            this.#update();
+            this.#update();        
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         
     }
