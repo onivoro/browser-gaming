@@ -13,6 +13,7 @@ export class Enemy {
         this.canvasHeight = canvasHeight;
         this.canvasWidth = canvasWidth;
 
+        this.frameNumber = 0;
         this.timeBetweenFrames = 2000;
 
         this.x = 0;
@@ -23,8 +24,10 @@ export class Enemy {
 
     #update() {
         this.speed = this.gameSpeed * this.speedModifier;
-        this.image.src = `${PATH_TO_ENEMIES}${this.imageFolder}/${this.imageNameGenerator(this.x % this.imageCount)}`;
+        if (this.frameNumber >= this.imageCount) { this.frameNumber = 0; }
+        this.image.src = `${PATH_TO_ENEMIES}${this.imageFolder}/${this.imageNameGenerator(this.frameNumber)}`;
         this.x++;
+        this.frameNumber++;
         this.x = Math.floor(this.x + this.speed);
     }
 

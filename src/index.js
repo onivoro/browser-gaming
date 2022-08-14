@@ -20,7 +20,7 @@ const layers = [
 ];
 
 function getFlappy() {
-    return new Enemy('Flappy-Box-Bird-Sprites', (number) => `skeleton-animation_${number.toString().padStart(2, '0')}.png`, 11, Math.random(), 259, 146,
+    return new Enemy('Flappy-Box-Bird-Sprites', (number) => `skeleton-animation_${number.toString().padStart(2, '0')}.png`, 10, Math.random(), 259, 146,
         GAME_SPEED, CANVAS_HEIGHT, CANVAS_WIDTH)
 }
 
