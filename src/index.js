@@ -1,3 +1,4 @@
+import { Character } from './lib/character.class.js';
 import { Enemy } from './lib/enemy.class.js';
 import { Layer } from './lib/layer.class.js';
 
@@ -33,6 +34,12 @@ const enemies = [
     getFlappy(), getFlappy(), getFlappy(), getCar()
 ];
 
+const characters = [
+    new Character('dad', (number) => `run/run_${number.toString().padStart(3, '0')}.png`, 42, 1, 114, 176, GAME_SPEED, CANVAS_HEIGHT, CANVAS_WIDTH),
+    new Character('dad', (number) => `rj/rj_${number.toString().padStart(3, '0')}.png`, 36, .5, 114, 176, GAME_SPEED, CANVAS_HEIGHT, CANVAS_WIDTH),
+    new Character('dad', (number) => `ko/ko_${number.toString().padStart(3, '0')}.png`, 42, .5, 114, 176, GAME_SPEED, CANVAS_HEIGHT, CANVAS_WIDTH),
+];
+
 function animate(time) {
     const deltaTime = !time ? timeBetweenFrames : time - timeLastDrawn;
 
@@ -45,6 +52,9 @@ function animate(time) {
         enemies.forEach(enemy => {
             enemy.draw(ctx, deltaTime);
         });
+        characters.forEach(character => {
+            character.draw(ctx, deltaTime);
+        })
     }
 
     requestAnimationFrame(animate);

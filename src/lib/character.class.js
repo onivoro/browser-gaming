@@ -1,6 +1,6 @@
-import { PATH_TO_ENEMIES } from "./asset-paths.constant.js";
+import {PATH_TO_CHARACTERS} from './asset-paths.constant.js';
 
-export class Enemy {
+export class Character {
     constructor(imageFolder, imageNameGenerator, imageCount, speedModifier, imageWidth, imageHeight, gameSpeed, canvasHeight, canvasWidth) {
         this.imageFolder = imageFolder;
         this.imageNameGenerator = imageNameGenerator;
@@ -18,16 +18,15 @@ export class Enemy {
         this.direction = 1;
 
         this.x = 0;
-        this.y = this.canvasHeight/2 * Math.random();
-       
+        this.y = Math.random() * this.canvasHeight;
         this.image = new Image();
-        this.image.src = `${PATH_TO_ENEMIES}${this.imageFolder}/${imageNameGenerator(0)}`;
+        this.image.src = `${PATH_TO_CHARACTERS}${this.imageFolder}/${imageNameGenerator(0)}`;
     }
 
     #update() {
         this.speed = this.gameSpeed * this.speedModifier;
         if (this.frameNumber >= this.imageCount) { this.frameNumber = 0; }
-        this.image.src = `${PATH_TO_ENEMIES}${this.imageFolder}/${this.imageNameGenerator(this.frameNumber)}`;
+        this.image.src = `${PATH_TO_CHARACTERS}${this.imageFolder}/${this.imageNameGenerator(this.frameNumber)}`;
         this.frameNumber++;
         if (this.x > this.canvasWidth) {
             this.direction = -1;
