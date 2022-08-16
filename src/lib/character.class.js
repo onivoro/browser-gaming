@@ -41,9 +41,9 @@ export class Character {
     }
 
     draw(ctx, deltaTime) {
-        
-            this.#update();        
+
+            this.#update();
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-        
+
     }
 }
