@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
     const CANVAS_WIDTH = canvas.width = BACKGROUND_IMAGE_WIDTH * .4;
     const CANVAS_HEIGHT = canvas.height = BACKGROUND_IMAGE_HEIGHT * 2 / 3 - 40;
     const GAME_SPEED = 10;
-    let timeLastDrawn = 0;
+    let lastTime = 0;
     const timeBetweenFrames = 20;
     const layers = [
         new Layer('layer-1.png', 0.2, BACKGROUND_IMAGE_WIDTH, BACKGROUND_IMAGE_HEIGHT, GAME_SPEED),
@@ -50,10 +50,10 @@ window.addEventListener('load', () => {
     const player = new Player(CANVAS_WIDTH, CANVAS_HEIGHT, 114, 176, inputHandler);
 
     function animate(time) {
-        const deltaTime = !time ? timeBetweenFrames : time - timeLastDrawn;
+        const deltaTime = !time ? timeBetweenFrames : time - lastTime;
 
-        if (deltaTime >= timeBetweenFrames) {
-            timeLastDrawn = time;
+        
+            lastTime = time;
             ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
             layers.forEach(layer => {
                 layer.draw(ctx, deltaTime);
@@ -64,9 +64,9 @@ window.addEventListener('load', () => {
             // characters.forEach(character => {
             //     character.draw(ctx, deltaTime);
             // })
-        }
+        
 
-        player.draw(ctx);
+        player.draw(ctx, deltaTime);
 
         requestAnimationFrame(animate);
     }

@@ -1,6 +1,6 @@
 import { PATH_TO_CHARACTERS } from './asset-paths.constant.js';
 import {getImagePath} from './get-image-path.function.js';
-import { ARROW_LEFT, ARROW_RIGHT } from './keys.constant.js';
+import { ARROW_LEFT, ARROW_RIGHT, ARROW_UP } from './keys.constant.js';
 
 export class Player {
     constructor(gameWidth, gameHeight, playerWidth, playerHeight, inputHandler) {
@@ -15,6 +15,8 @@ export class Player {
         this.y = this.gameHeight - this.height;
         this.image = this.#getImage(this.imageNumber);
         this.speed = 0;
+        this.vy = 0;
+        this.weight = 1;
     }
 
     #update() {
@@ -28,6 +30,11 @@ export class Player {
             this.speed = 0;
             this.imageNumber = 33;
         }
+
+        if(this.inputHandler.has(ARROW_UP)) {
+
+        }
+        
         this.image = this.#getImage(this.imageNumber);
 
         this.x += this.speed;
