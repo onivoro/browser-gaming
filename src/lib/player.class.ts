@@ -15,6 +15,7 @@ export class Player implements IDrawable {
     speed = 0;
     vy = 0;
     weight = 1;
+    yLimit: number;
 
     constructor(
         private gameWidth: number, private gameHeight: number, private width: number, private height: number, private inputHandler: InputHandler,
@@ -22,6 +23,7 @@ export class Player implements IDrawable {
 
         this.x = 10;
         this.y = this.gameHeight - this.height;
+        this.yLimit = this.gameHeight - this.height;
         this.image = this.#getImage(this.imageNumber);
     }
 
@@ -38,6 +40,13 @@ export class Player implements IDrawable {
         }
 
         if (this.inputHandler.has(ARROW_UP)) {
+            if (this.y > 0) {
+                this.y -= 10;
+            }
+        } else {
+            if(this.y < this.yLimit) {
+                this.y += 10;
+            }
         }
 
         this.image = this.#getImage(this.imageNumber);
